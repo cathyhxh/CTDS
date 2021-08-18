@@ -1,19 +1,18 @@
-```diff
-- Please pay attention to the version of SC2 you are using for your experiments. 
-- Performance is *not* always comparable between versions. 
-- The results in SMAC (https://arxiv.org/abs/1902.04043) use SC2.4.6.2.69232 not SC2.4.10.
-```
+# CTDS:Centralized Teacher with Decentralized Student for Multi-Agent Reinforcement Learning
 
-# Python MARL framework
+This codebase accompanies paper *Centralized Teacher with Decentralized Student for Multi-Agent Reinforcement Learning.*
 
-PyMARL is [WhiRL](http://whirl.cs.ox.ac.uk)'s framework for deep multi-agent reinforcement learning and includes implementations of the following algorithms:
-- [**QMIX**: QMIX: Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning](https://arxiv.org/abs/1803.11485)
-- [**COMA**: Counterfactual Multi-Agent Policy Gradients](https://arxiv.org/abs/1705.08926)
+It is written in PyTorch and are based on the [Pymarl](https://github.com/oxwhirl/pymarl) algorithm library and  [SMAC](https://github.com/oxwhirl/smac)  codebases which are open-sourced.
+
+The modified SMAC of CTDS is illustrated in the folder /smac of supplymentary material.
+
+CTDS is a novel framework for deep multi-agent reinforcement learning and includes implementations of the following algorithms:
+
 - [**VDN**: Value-Decomposition Networks For Cooperative Multi-Agent Learning](https://arxiv.org/abs/1706.05296) 
-- [**IQL**: Independent Q-Learning](https://arxiv.org/abs/1511.08779)
-- [**QTRAN**: QTRAN: Learning to Factorize with Transformation for Cooperative Multi-Agent Reinforcement Learning](https://arxiv.org/abs/1905.05408)
+- [**QMIX**: QMIX: Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning](https://arxiv.org/abs/1803.11485)
+- [**QPLEX**: QPLEX: DUPLEX DUELING MULTI-AGENT Q-LEARNING](https://arxiv.org/pdf/2008.01062.pdf)
 
-PyMARL is written in PyTorch and uses [SMAC](https://github.com/oxwhirl/smac) as its environment.
+We also apply the corresponding algorithms implementations with the framework of CTDE as baselines.
 
 ## Installation instructions
 
@@ -34,24 +33,21 @@ The requirements.txt file can be used to install the necessary packages into a v
 
 ## Run an experiment 
 
+The following commands train QMIX  the paradigm "CTDS".
+
 ```shell
-python3 src/main.py --config=qmix --env-config=sc2 with env_args.map_name=2s3z
+python3 src/main.py --config=qmix --env-config=sc2 with env_args.map_name=2s3z paradigm='CTDS'
 ```
 
-The config files act as defaults for an algorithm or environment. 
+The following commands train QMIX  the paradigm "CTDE".
 
-They are all located in `src/config`.
-`--config` refers to the config files in `src/config/algs`
-`--env-config` refers to the config files in `src/config/envs`
-
-To run experiments using the Docker container:
 ```shell
-bash run.sh $GPU python3 src/main.py --config=qmix --env-config=sc2 with env_args.map_name=2s3z
+python3 src/main.py --config=qmix --env-config=sc2 with env_args.map_name=2s3z paradigm='CTDE'
 ```
 
-All results will be stored in the `Results` folder.
 
-The previous config files used for the SMAC Beta have the suffix `_beta`.
+
+
 
 ## Saving and loading learnt models
 
@@ -75,28 +71,4 @@ python -m pysc2.bin.play --norender --rgb_minimap_size 0 --replay NAME.SC2Replay
 
 **Note:** Replays cannot be watched using the Linux version of StarCraft II. Please use either the Mac or Windows version of the StarCraft II client.
 
-## Documentation/Support
 
-Documentation is a little sparse at the moment (but will improve!). Please raise an issue in this repo, or email [Tabish](mailto:tabish.rashid@cs.ox.ac.uk)
-
-## Citing PyMARL 
-
-If you use PyMARL in your research, please cite the [SMAC paper](https://arxiv.org/abs/1902.04043).
-
-*M. Samvelyan, T. Rashid, C. Schroeder de Witt, G. Farquhar, N. Nardelli, T.G.J. Rudner, C.-M. Hung, P.H.S. Torr, J. Foerster, S. Whiteson. The StarCraft Multi-Agent Challenge, CoRR abs/1902.04043, 2019.*
-
-In BibTeX format:
-
-```tex
-@article{samvelyan19smac,
-  title = {{The} {StarCraft} {Multi}-{Agent} {Challenge}},
-  author = {Mikayel Samvelyan and Tabish Rashid and Christian Schroeder de Witt and Gregory Farquhar and Nantas Nardelli and Tim G. J. Rudner and Chia-Man Hung and Philiph H. S. Torr and Jakob Foerster and Shimon Whiteson},
-  journal = {CoRR},
-  volume = {abs/1902.04043},
-  year = {2019},
-}
-```
-
-## License
-
-Code licensed under the Apache License v2.0
