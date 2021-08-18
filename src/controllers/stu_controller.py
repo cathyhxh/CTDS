@@ -4,7 +4,7 @@ import torch as th
 
 
 # This multi-agent controller shares parameters between agents
-class BasicMAC:
+class StuMAC:
     def __init__(self, scheme, groups, args):
         self.n_agents = args.n_agents
         self.args = args
@@ -72,7 +72,7 @@ class BasicMAC:
         self.agent.load_state_dict(th.load("{}/agent.th".format(path), map_location=lambda storage, loc: storage))
 
     def _build_agents(self, input_shape):
-        self.agent = agent_REGISTRY['rnn'](input_shape, self.args)
+        self.agent = agent_REGISTRY["rnn"](input_shape, self.args)
 
     def _build_inputs(self, batch, t):
         # Assumes homogenous agents with flat observations.
