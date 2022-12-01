@@ -31,29 +31,6 @@ This will download SC2 into the 3rdparty folder and copy the maps necessary to r
 
 The requirements.txt file can be used to install the necessary packages into a virtual environment (not recomended).
 
-As for grid world environment $Combat$ , install it by
-
-```
-git clone https://github.com/koulanurag/ma-gym.git
-```
-
-and then replay ma-gym/ma_gym/envs/combat/combat.py by the version we provide.
-
-## Run an experiment 
-
-### In Combat
-
-The following commands train QMIX  the paradigm "CTDS".
-
-```shell
-python3 src/main.py --config=qmix --env-config=gymma with env_args.key="ma_gym:Combat-v0" t_max=500000 paradigm='CTDS'
-```
-
-The following commands train QMIX  the paradigm "CTDE".
-
-```shell
-python3 src/main.py --config=qmix --env-config=gymma with env_args.key="ma_gym:Combat-v0" t_max=500000 paradigm='CTDE'
-```
 
 ## In StarCraft
 
