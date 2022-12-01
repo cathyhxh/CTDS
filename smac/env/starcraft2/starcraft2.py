@@ -1030,7 +1030,7 @@ class StarCraft2Env(MultiAgentEnv):
         agents_obs = [self.get_obs_agent(i) for i in range(self.n_agents)]
         return agents_obs
    
-    def get_obs_agent_perfect(self, agent_id):
+    def get_obs_agent_kaitu(self, agent_id):
         """Returns observation for agent_id. The observation is composed of:
 
            - agent movement features (where it can move to, height information and pathing grid)
@@ -1204,13 +1204,13 @@ class StarCraft2Env(MultiAgentEnv):
 
         return agent_obs
 
-    def get_obs_perfect(self):
+    def get_obs_kaitu(self):
         """Returns all agent observations in a list.
         NOTE: Agents should have access only to their local observations
         during decentralised execution.
         """
-        agents_obs_perfect = [self.get_obs_agent_perfect(i) for i in range(self.n_agents)]
-        return agents_obs_perfect
+        agents_obs_kaitu = [self.get_obs_agent_kaitu(i) for i in range(self.n_agents)]
+        return agents_obs_kaitu
 
     def get_state(self):
         """Returns the global state.
